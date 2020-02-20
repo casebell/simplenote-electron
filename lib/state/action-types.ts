@@ -52,8 +52,11 @@ export type SetWPToken = Action<'setWPToken', { token: string }>;
  * Normal action types
  */
 export type CreateNote = Action<'CREATE_NOTE'>;
-export type CloseNote = Action<'CLOSE_NOTE'>;
-export type FilterNotes = Action<'FILTER_NOTES', { notes: T.NoteEntity[] }>;
+export type CloseNote = Action<'CLOSE_NOTE', { noteIndex: number }>;
+export type FilterNotes = Action<
+  'FILTER_NOTES',
+  { notes: T.NoteEntity[]; noteIndex: number }
+>;
 export type FocusSearchField = Action<'FOCUS_SEARCH_FIELD'>;
 export type Search = Action<'SEARCH', { searchQuery: string }>;
 export type SetAuth = Action<'AUTH_SET', { status: AuthState }>;
@@ -114,7 +117,6 @@ type LegacyAction =
       {
         noteBucket: T.Bucket<T.Note>;
         note: T.NoteEntity;
-        previousIndex: number;
       }
     >
   | Action<
@@ -159,7 +161,6 @@ type LegacyAction =
       {
         noteBucket: T.Bucket<T.Note>;
         note: T.NoteEntity;
-        previousIndex: number;
       }
     >
   | Action<
@@ -179,7 +180,6 @@ type LegacyAction =
       {
         noteBucket: T.Bucket<T.Note>;
         note: T.NoteEntity;
-        previousIndex: number;
       }
     >
   | Action<'App.authChanged'>
